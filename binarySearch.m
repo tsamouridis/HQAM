@@ -1,14 +1,5 @@
-function result = binarySearch(a, left, right, toFind)
-    result = -1;
-    while left <= right
-        mid = floor((left + right)/2);
-        if a(mid) == toFind
-            result = mid;
-            break;
-        elseif a(mid) < toFind
-            left = mid + 1;
-        else
-            right = mid - 1;
-        end
-    end
+% Returns the values of the matrix M that are with the lower bound
+% (lower_bound matrix) and the upper bound (upper_bound)
+function within_bounds = binarySearch(M, lower_bound, upper_bound)    
+    within_bounds = M(M>=lower_bound & M<=upper_bound);  
 end

@@ -7,9 +7,9 @@
 function signal = createRandomSignal(size, method, M, dmin)
     signal = zeros(1, size);
     if method == "QAM"
-        x = myQAM(M, dmin);
+        x = QAM(M, dmin);
     elseif method == "rHQAM"
-        x = myR_HQAM(M, dmin);
+        x = rHQAM(M, dmin);
     else
         error('Wrong method as input')
     end

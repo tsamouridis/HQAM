@@ -1,7 +1,7 @@
 %This function creates a QAM constellation
 % @param M: order of the constellation
 % @param dmin:  minimum distance between two consecutive symbols
-function result = myQAM(M, dmin)
+function result = QAM(M, dmin)
     exponent = log2(M);
     if hasDecimals(exponent)
         error('M must be power of 2')
@@ -101,6 +101,6 @@ function result = myQAM(M, dmin)
             end
         end            
     end
-    result = sortByImagPart(result);
+    result = sortByImagPart(result);   
 end
 

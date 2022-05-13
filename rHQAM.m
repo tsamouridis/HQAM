@@ -3,12 +3,12 @@
 %   @param dmin:  minimum distance between two consecutive symbols
 % PROBLEM: should we check which row i shift -> and whch <- ??
 
-function res = myR_HQAM(M, dmin)
+function res = rHQAM(M, dmin)
     toCheck = log2(M);
     if ceil(toCheck) ~= floor(toCheck)
         error('M must be power of 2')
     end
-    y = myQAM(M, dmin);
+    y = QAM(M, dmin);
     newY = zeros(1, M);
     counter = 2;
     temp = imag(y(1));
