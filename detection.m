@@ -13,7 +13,9 @@ k = 0.7;
 radius = k*R_stressed + (1-k)*R;
 
 snr = 10;
-transmitted = createRandomSignal(signalSize, method, M, dmin);     % creates a signal with 500 bits modulated as @param method
+sent = createRandomSignal(signalSize, method, M, dmin);     % creates a signal with 500 bits modulated as rHQAM
+constellation = rHQAM(M, dmin);                             % our constellation
+received = awgn(sent, snr);
 
 % our constellation:
 if method == "rHQAM"
@@ -21,13 +23,19 @@ if method == "rHQAM"
 elseif method == "irHQAM"
     constellation = irHQAM(M, dmin);
 end
-                          
-received = awgn(transmitted, snr);                                 % received = transmitted + n
+
 nearestSymbol = zeros(size(received));
 
-Q = unique(constellation(imag(constellation) == min(imag(constellation)) ...
-     | real(constellation) == min(real(constellation)) | real(constellation) ...
-     == max(real(constellation)) | imag(constellation) == max(imag(constellation))));
+Q = [];
+if length(constellation) > 8
+    for i=1:length(constellation)
+        numberOfNeighbours = findNeighbours(setdiff(constellation, constellation(i)), constellation(i), dmin);
+        
+        if numberOfNeighbours <= 5
+           Q = [Q constellation(i)]; 
+        end
+    end
+end
 
 Q1 = Q((real(Q) > 0) & (imag(Q) > 0));
 Q2 = Q((real(Q) < 0) & (imag(Q) > 0));
@@ -82,7 +90,7 @@ for i = 1:length(received)
 
 end
 
-scatter(real(transmitted), imag(transmitted), 40,...
+scatter(real(sent), imag(sent), 40,...
               'MarkerEdgeColor', 'red',...
               'MarkerFaceColor', 'red',...
               'LineWidth', 1.5) 

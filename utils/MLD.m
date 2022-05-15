@@ -10,4 +10,3 @@ function nearestSymbol = MLD(symbols, r)
         end
     end
 end
-

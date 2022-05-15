@@ -22,12 +22,12 @@ function result = QAM(M, dmin)
 %             negative_x_values = zeros(1, numOfCoordinates);
             
             positive_y_values = zeros(1, numOfCoordinates);
-            positive_y_values(1) = 1i*dmin/2;
+            positive_y_values(1) = 1i*sqrt(3)*dmin/2;
 %             negative_y_values = zeros(1, numOfCoordinates);
             
             for ii = 2:numOfCoordinates
                 positive_x_values(ii) = positive_x_values(ii-1)+dmin;
-                positive_y_values(ii) = positive_y_values(ii-1)+1i*dmin;
+                positive_y_values(ii) = positive_y_values(ii-1)+1i*dmin*sqrt(3);
             end
             negative_x_values = -flip(positive_x_values);
             negative_y_values = -flip(positive_y_values);
@@ -51,10 +51,10 @@ function result = QAM(M, dmin)
             positive_x_values = zeros(1,k);
             positive_x_values(1) = dmin/2;
             positive_y_values = zeros(1, k);
-            positive_y_values(1) = 1i*dmin/2;
+            positive_y_values(1) = sqrt(3)*1i*dmin/2;
             for ii = 2:k
                positive_x_values(ii) = positive_x_values(ii-1) + dmin;
-               positive_y_values(ii) = positive_y_values(ii-1) + 1i*dmin;
+               positive_y_values(ii) = positive_y_values(ii-1) + 1i*dmin*sqrt(3);
             end
             negative_x_values = -flip(positive_x_values);
             negative_y_values = -flip(positive_y_values);
