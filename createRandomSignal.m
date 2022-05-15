@@ -10,6 +10,8 @@ function signal = createRandomSignal(size, method, M, dmin)
         x = QAM(M, dmin);
     elseif method == "rHQAM"
         x = rHQAM(M, dmin);
+    elseif method == "irHQAM"
+        x = irHQAM(M, dmin);
     else
         error('Wrong method as input')
     end

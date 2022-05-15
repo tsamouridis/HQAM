@@ -3,9 +3,9 @@ close all;
 
 % parameters
 dmin = 1;
-signalSize = 2;
-method = 'rHQAM';
-M = 8*2*2*2;
+signalSize = 15;
+method = "irHQAM";
+M = 64;
 
 R = dmin/2;
 R_stressed = dmin/sqrt(3);
@@ -13,10 +13,16 @@ k = 0.7;
 radius = k*R_stressed + (1-k)*R;
 
 snr = 10;
+transmitted = createRandomSignal(signalSize, method, M, dmin);     % creates a signal with 500 bits modulated as @param method
 
-sent = createRandomSignal(signalSize, method, M, dmin);     % creates a signal with 500 bits modulated as rHQAM
-constellation = rHQAM(M, dmin);                          % our constellation
-received = awgn(sent, snr);                                 % received = sent + n
+% our constellation:
+if method == "rHQAM"
+    constellation = rHQAM(M, dmin);
+elseif method == "irHQAM"
+    constellation = irHQAM(M, dmin);
+end
+                          
+received = awgn(transmitted, snr);                                 % received = transmitted + n
 nearestSymbol = zeros(size(received));
 
 Q = unique(constellation(imag(constellation) == min(imag(constellation)) ...
@@ -76,7 +82,7 @@ for i = 1:length(received)
 
 end
 
-scatter(real(sent), imag(sent), 40,...
+scatter(real(transmitted), imag(transmitted), 40,...
               'MarkerEdgeColor', 'red',...
               'MarkerFaceColor', 'red',...
               'LineWidth', 1.5) 
@@ -95,7 +101,7 @@ scatter(real(constellation), imag(constellation), 40,...
               'MarkerEdgeColor', 'black',...
               'MarkerFaceColor', 'black',...
               'LineWidth', 1.5)          
-title(['Constellation'])
+title('Constellation')
 grid on;  
 
 figure;
@@ -103,5 +109,5 @@ scatter(real(nearestSymbol), imag(nearestSymbol), 40,...
               'MarkerEdgeColor', [0.6350 0.0780 0.1840],...
               'MarkerFaceColor', [0.6350 0.0780 0.1840],...
               'LineWidth', 1.5)          
-title(['Nearest Symbols'])
+title('Nearest Symbols')
 grid on; 
