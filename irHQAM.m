@@ -9,7 +9,7 @@ function res = irHQAM(M, dmin)
     l = 1;   %counter
     y = rHQAM(m, dmin);
     y = y - dmin/4; % Shift to the right
-    y = y + 1j*dmin/2;
+    y = y + 1j*sqrt(3)*dmin/4;
     % Center point = 0 + 1j*0;
     Ec = sqrt(real(y).^2 + imag(y).^2); %Ec(index) = energy of point at y(index)
     while l <= M

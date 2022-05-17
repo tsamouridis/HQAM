@@ -19,9 +19,9 @@ function res = rHQAM(M, dmin)
         end
         
         if mod(counter,2) == 0
-            newcoord = y(ii) - dmin/8;
+            newcoord = y(ii) - dmin/4;
         else
-            newcoord = y(ii) + dmin/8;
+            newcoord = y(ii) + dmin/4;
         end
         newY(ii) = newcoord;
     end
