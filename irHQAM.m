@@ -18,5 +18,4 @@ function res = irHQAM(M, dmin)
         res(l) = y(index);
         l = l+1;
     end
-    scatterplot(res)
 end
