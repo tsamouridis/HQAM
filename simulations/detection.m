@@ -4,8 +4,8 @@ close all;
 % parameters
 dmin = 1;
 signalSize = 15;
-method = "irHQAM";
-M = 64;
+method = "rHQAM";
+M = 2^11;
 
 R = dmin/2;
 R_stressed = dmin/sqrt(3);
