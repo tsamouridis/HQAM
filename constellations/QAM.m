@@ -54,7 +54,7 @@ function result = QAM(M, dmin)
             positive_y_values(1) = 1i*sqrt(3)*dmin/4;
             for ii = 2:k
                positive_x_values(ii) = positive_x_values(ii-1) + dmin;
-               positive_y_values(ii) = positive_y_values(ii-1) + 1i*sqrt(3)*dmin/3;
+               positive_y_values(ii) = positive_y_values(ii-1) + 1i*sqrt(3)*dmin/2;
             end
             negative_x_values = -flip(positive_x_values);
             negative_y_values = -flip(positive_y_values);
