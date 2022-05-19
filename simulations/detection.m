@@ -4,7 +4,7 @@ close all;
 % parameters
 dmin = 1;
 signalSize = 15;
-method = "rHQAM";
+method = "irHQAM";
 M = 2^11;
 
 R = dmin/2;
@@ -119,3 +119,5 @@ scatter(real(nearestSymbol), imag(nearestSymbol), 40,...
               'LineWidth', 1.5)          
 title('Nearest Symbols')
 grid on; 
+
+scatterplot(Q)

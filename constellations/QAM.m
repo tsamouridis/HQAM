@@ -14,16 +14,12 @@ function result = QAM(M, dmin)
         points_per_quadrant = M/4;
         numOfCoordinates = sqrt(points_per_quadrant);
         result = zeros(1, M);
-%         x_values = [];
-%         y_values = [];
         if ~hasDecimals(numOfCoordinates)
             positive_x_values = zeros(1, numOfCoordinates);
             positive_x_values(1) = dmin/2;
-%             negative_x_values = zeros(1, numOfCoordinates);
             
             positive_y_values = zeros(1, numOfCoordinates);
             positive_y_values(1) = 1i*sqrt(3)*dmin/4;
-%             negative_y_values = zeros(1, numOfCoordinates);
             
             for ii = 2:numOfCoordinates
                 positive_x_values(ii) = positive_x_values(ii-1)+dmin;
@@ -76,10 +72,10 @@ function result = QAM(M, dmin)
             pointsAdded = kk;
             while pointsAdded < M
                 newXcoordinate = max_x+dmin;
-                newYcoordinate = max_y+1i*dmin;
+                newYcoordinate = max_y+1i*sqrt(3)*dmin/2;
                 max_x = newXcoordinate;
                 max_y = newYcoordinate;
-                %x_values = [x_values, newXcoordinate];
+
                 for ii = y_values
                     result(kk) = newXcoordinate+ii;
                     kk = kk+1;
@@ -101,5 +97,5 @@ function result = QAM(M, dmin)
             end
         end            
     end
-    result = sortByImagPart(result);   
+    result = sortByImagPart(result);
 end
