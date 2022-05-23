@@ -1,3 +1,4 @@
+% Returns the number of nearest neighbours of a given symbol r
 function neighbours = findNeighbours(symbols, r, dmin)  
     neighbours = 0;
     for i=1:length(symbols)
@@ -6,4 +7,3 @@ function neighbours = findNeighbours(symbols, r, dmin)
         end
     end
 end
-

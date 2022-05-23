@@ -1,4 +1,4 @@
-function nearestSymbol = detection(constellation, sent, received, dmin, M, k)
+function nearestSymbol = detection(constellation, received, dmin, k)
     R = dmin/2;
     R_stressed = dmin/sqrt(3);
     radius = k*R_stressed + (1-k)*R;
