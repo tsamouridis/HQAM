@@ -1,6 +1,8 @@
-%This function creates a QAM constellation
-% @param M: order of the constellation
-% @param dmin:  minimum distance between two consecutive symbols
+%Creates a special QAM constellation.
+%The vertical and horizontal distance between two successive symbols are
+%sqrt(3)*dmin/2 and dmin respectively.
+%   @param M: order of the constellation
+%   @param dmin:  minimum distance between two consecutive symbols
 function result = QAM(M, dmin)
     exponent = log2(M);
     if hasDecimals(exponent)
@@ -14,7 +16,7 @@ function result = QAM(M, dmin)
         points_per_quadrant = M/4;
         numOfCoordinates = sqrt(points_per_quadrant);
         result = zeros(1, M);
-        if ~hasDecimals(numOfCoordinates)
+        if is_even(exponent)    %constellation has orthogonal shape
             positive_x_values = zeros(1, numOfCoordinates);
             positive_x_values(1) = dmin/2;
             
@@ -31,6 +33,7 @@ function result = QAM(M, dmin)
             x_values = [negative_x_values, positive_x_values];
             y_values = [negative_y_values, positive_y_values];
             
+            % this loop generates the complex numbers x+jy
             kk = 1;
             while kk<=M
                 for ii = 1:length(x_values)
@@ -40,15 +43,18 @@ function result = QAM(M, dmin)
                     end
                 end
             end
-        else
-            %numofcoordinates not integer ()
-            temp = points_per_quadrant/2;
-            k = sqrt(temp);
-            positive_x_values = zeros(1,k);
+            
+        else    %constellation has cross-like shape
+            %symbols in each Quadrant are divided in the ones forming a
+            %square and the ones completing the square on top and on the
+            %side
+            numOfSymbolsInSquareShape = points_per_quadrant/2;
+            LengthOSideOfSquare = sqrt(numOfSymbolsInSquareShape);
+            positive_x_values = zeros(1,LengthOSideOfSquare);
             positive_x_values(1) = dmin/2;
-            positive_y_values = zeros(1, k);
+            positive_y_values = zeros(1, LengthOSideOfSquare);
             positive_y_values(1) = 1i*sqrt(3)*dmin/4;
-            for ii = 2:k
+            for ii = 2:LengthOSideOfSquare
                positive_x_values(ii) = positive_x_values(ii-1) + dmin;
                positive_y_values(ii) = positive_y_values(ii-1) + 1i*sqrt(3)*dmin/2;
             end
@@ -58,8 +64,10 @@ function result = QAM(M, dmin)
             x_values = [negative_x_values, positive_x_values];
             y_values = [negative_y_values, positive_y_values];
             
+            % this loop forms the complex number of the symbols in square
+            % shape
             kk = 1;
-            while kk <= k*k
+            while kk <= numOfSymbolsInSquareShape
                 for ii = 1:length(x_values)
                     for jj = 1: length(y_values)
                         result(kk) = x_values(ii)+y_values(jj) ;
@@ -70,6 +78,8 @@ function result = QAM(M, dmin)
             max_x = x_values(end);
             max_y = y_values(end);
             pointsAdded = kk;
+            
+            %Adds the rest symbols to the Quadrant
             while pointsAdded < M
                 newXcoordinate = max_x+dmin;
                 newYcoordinate = max_y+1i*sqrt(3)*dmin/2;

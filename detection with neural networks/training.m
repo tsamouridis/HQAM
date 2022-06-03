@@ -1,3 +1,4 @@
+% Trains a Neural Network to detect Constellation via MLD method
 function [net, targetOutput] = training(net, sampleSize, constellation, method)
     SNR = 5;
     dmin = 2;

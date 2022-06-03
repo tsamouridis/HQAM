@@ -1,3 +1,5 @@
+% Calculates K and Kc parameters, which are used in HQAM's proposed
+% SEP
 function [K, Kc] = findNearNeighborParameters(constellation, dmin)
     K = 0;
     Kc = 0;

@@ -1,4 +1,4 @@
-% This function simulates a modulated signal
+% Simulates a modulated signal to be sent to the receiver
 %   @param size: number of symbols in the signal
 %   @param method: the method of modulation(currently supporting QAM, rHQAM)
 %   @param M: order of constellation

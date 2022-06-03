@@ -23,7 +23,7 @@ sigma = sqrt(N0/2);
 Es = 1/M*sum((vecnorm(constellation, 2, 1)) .^ 2);
 
 %% Sent signal
-signalSize = 1000;
+signalSize = 10000;
 sent = createRandomSignal(signalSize, method, M, dmin); 
 
 %% Matrices initialization
@@ -45,11 +45,12 @@ for ii = 1:length(N0)
     a = (dmin/(2*sigma(ii)))^2/gs(ii);
     approxSEP(ii) = approximatedSEP(K, a, gs(ii), Kc);
        
-    nearestSymbol = detection(constellation, received, dmin, k, radius);
+    nearestSymbol = detection(constellation, received, dmin, radius);
 
     simulatedSEP(ii) = sum([nearestSymbol ~= sent]) / signalSize;
 end
 
+%%Result plotting
 figure
 semilogy(gs, simulatedSEP)
 hold on

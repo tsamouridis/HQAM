@@ -1,3 +1,4 @@
+% Returns the number of external symbols in a given constellation 
 function numOfExtSymbols = calculateNumOfExtSymbols(constellation, dmin)
     numOfExtSymbols = 0;
     M = length(constellation);

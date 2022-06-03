@@ -1,3 +1,4 @@
+%Simulates a Detection algorithm using Neural Network
 close all;clear all;
 
 %% Constellation Generation

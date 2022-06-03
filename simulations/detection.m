@@ -1,4 +1,5 @@
-function nearestSymbol = detection(constellation, received, dmin, k, radius)
+% Simulates a detection Algorithm for HQAM constellations
+function nearestSymbol = detection(constellation, received, dmin, radius)
     nearestSymbol = zeros(size(received));
 
     Q = [];

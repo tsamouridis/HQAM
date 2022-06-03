@@ -1,3 +1,5 @@
+% Chooses a proper value of k parameter, which is used in Constellation
+% Detection Algorithm
 function k = loadK(M, method)
     if method == "rHQAM"
         switch M
@@ -22,4 +24,3 @@ function k = loadK(M, method)
         k = 0.5;
     end
 end
-
