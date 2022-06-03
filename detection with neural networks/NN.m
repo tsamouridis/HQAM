@@ -3,7 +3,7 @@ close all;clear all;
 %% Constellation Generation
 method = "rHQAM";
 dmin = 2;
-M = 128;
+M = 2*16;
 
 if method == "rHQAM"
     constellation = rHQAM(M, dmin);

@@ -3,7 +3,7 @@ close all;clear all;
 %% Constellation Parameters
 dmin = 2.5;
 method = "rHQAM";
-M = 32;
+M = 64;
 
 if method == "rHQAM"
     constellation = rHQAM(M, dmin);
@@ -23,6 +23,7 @@ sigma = sqrt(N0/2);
 Es = 1/M*sum((vecnorm(constellation, 2, 1)) .^ 2);
 
 %% Sent signal
+signalSize = 1000;
 sent = createRandomSignal(signalSize, method, M, dmin); 
 
 %% Matrices initialization

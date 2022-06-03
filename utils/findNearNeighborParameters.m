@@ -1,6 +1,8 @@
 function [K, Kc] = findNearNeighborParameters(constellation, dmin)
     K = 0;
     Kc = 0;
+    
+    M = length(constellation);
     for i = 1:M
         numOfNearestNeighbours = findNeighbours(setdiff(constellation, constellation(i)), constellation(i), dmin);
         K = K + numOfNearestNeighbours;
