@@ -6,6 +6,10 @@ function res = rHQAM(M, dmin)
     if hasDecimals(exponent)
         error('M must be power of 2')
     end
+    if M == 2
+        res = QAM(M, dmin);
+        return
+    end
     tempQAM = QAM(M, dmin);
     res = zeros(1, M);
     counter = 2;

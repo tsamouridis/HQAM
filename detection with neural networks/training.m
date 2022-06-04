@@ -1,12 +1,11 @@
 % Trains a Neural Network to detect Constellation via MLD method
-function [net, targetOutput] = training(net, sampleSize, constellation, method)
-    SNR = 5;
+function [net, targetOutput] = training(net, sampleSize, constellation, snr, method)
     dmin = 2;
     M = length(constellation);
     
     trainingSent = createRandomSignal(sampleSize, method, M, dmin);
 
-    received = awgn(trainingSent , SNR);
+    received = awgn(trainingSent , snr);
 
     trainingInput(1, :) = real(received);
     trainingInput(2, :) = imag(received);

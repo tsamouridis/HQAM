@@ -15,16 +15,17 @@ end
 %% NN declaration
 net = patternnet;
 
-%% Training
-sampleSize = 10000;
-[net, t] = training(net, sampleSize, constellation, method);
-
 %% Sent, Received Signals
 SNR = 10;
 signalSize = 1000;
 
 sent = createRandomSignal(signalSize, method, M, dmin);
 received = awgn(sent, SNR);
+
+%% Training
+sampleSize = 10000;
+[net, t] = training(net, sampleSize, constellation, snr-5, method);
+
 
 %% Detection with Neural Network
 input(1, :) = real(received);
