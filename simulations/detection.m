@@ -11,12 +11,20 @@ function nearestSymbol = detection(constellation, received, dmin, radius)
                Q = [Q constellation(i)]; 
             end
         end
+        
+        Q1 = Q((real(Q) > 0) & (imag(Q) > 0));
+        Q2 = Q((real(Q) < 0) & (imag(Q) > 0));
+        Q3 = Q((real(Q) < 0) & (imag(Q) < 0));
+        Q4 = Q((real(Q) > 0) & (imag(Q) < 0));
+        
+    else
+        Q1 = constellation((real(constellation) > 0) & (imag(constellation) > 0));
+        Q2 = constellation((real(constellation) < 0) & (imag(constellation) > 0));
+        Q3 = constellation((real(constellation) < 0) & (imag(constellation) < 0));
+        Q4 = constellation((real(constellation) > 0) & (imag(constellation) < 0));
     end
 
-    Q1 = Q((real(Q) > 0) & (imag(Q) > 0));
-    Q2 = Q((real(Q) < 0) & (imag(Q) > 0));
-    Q3 = Q((real(Q) < 0) & (imag(Q) < 0));
-    Q4 = Q((real(Q) > 0) & (imag(Q) < 0));
+
 
     Sx = sort(unique(real(constellation)));
 

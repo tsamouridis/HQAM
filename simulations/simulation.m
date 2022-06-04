@@ -3,7 +3,7 @@ close all;clear all;
 %% Constellation Parameters
 dmin = 2.5;
 method = "rHQAM";
-M = 64;
+M = 8;
 
 if method == "rHQAM"
     constellation = rHQAM(M, dmin);
