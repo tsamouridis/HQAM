@@ -3,7 +3,7 @@ close all;clear all;
 
 %% Constellation Generation
 method = "rHQAM";
-dmin = 2;
+dmin = 1;
 M = 2*16;
 
 if method == "rHQAM"
@@ -24,7 +24,7 @@ received = awgn(sent, SNR);
 
 %% Training
 sampleSize = 10000;
-[net, t] = training(net, sampleSize, constellation, snr-5, method);
+[net, t] = training(net, sampleSize, constellation, SNR-5, method);
 
 
 %% Detection with Neural Network
