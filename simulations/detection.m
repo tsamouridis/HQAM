@@ -1,4 +1,8 @@
 % Simulates a detection Algorithm for HQAM constellations
+%   @param constellation: the constellation beeing used
+%   @param received: received signal with length(received) symbols
+%   @param dmin: minimum distance
+%   @param radius: radius of the circle used in the detection
 function nearestSymbol = detection(constellation, received, dmin, radius)
     nearestSymbol = zeros(size(received));
 
@@ -23,8 +27,6 @@ function nearestSymbol = detection(constellation, received, dmin, radius)
         Q3 = constellation((real(constellation) < 0) & (imag(constellation) < 0));
         Q4 = constellation((real(constellation) > 0) & (imag(constellation) < 0));
     end
-
-
 
     Sx = sort(unique(real(constellation)));
 
